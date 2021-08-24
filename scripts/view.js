@@ -3,11 +3,7 @@ const view = {
     row: `<div class="row"></div>`,
 
     getBar: (classes, text, i) => {
-        if (getWord(i).enabled) {
-            classes += " outsideShadow";
-        } else {
-            classes += " insetShadow";
-        }
+        classes += " outsideShadow";
 
         let bar = `<div class="bar ${classes}"><div class="inside"></div><p>${text}</p></div>`;
         return bar;
@@ -18,7 +14,7 @@ const view = {
         elements.append(view.getBar("bottom",   bottom.name,    currentWord + 1));
 
         $(".current").attr("onclick", "toggleButton()");
-        await timeout(5);
+        await timeout(50);
         view.fitText(".bar", {x: 40, y: 30});
     },
     updatePair: async (current, top, bottom, dir) => {
@@ -65,37 +61,13 @@ const view = {
         await timeout (600);
         elements.find(dir < 0 ? ".offscreenBottom" : ".offscreenTop").remove();
 
-        $(".bar").attr("onclick", "");
-        $(".current").attr("onclick", "toggleButton()");
-
         scrolling = false;
     },
-    toggleButton: async (enabled) => {
-        if (enabled) {
-            $(".current").removeClass("insetShadow");
-            $(".current").addClass("outsideShadow");
-            $(".current p").animate({ fontSize: "+=2" }, 200);
-            $(".current p").css("max-width", 400);
-            getWord(currentWord).fontSize = parseInt($(".current p").css("font-size")) + 3;
-        } else {
-            $(".current").removeClass("outsideShadow");
-            $(".current").addClass("insetShadow");
-            $(".current p").animate({ fontSize: "-=2" }, 200);
-            await timeout(200);
-            $(".current p").css("max-width", 350);
-        }
-    },
     onPlay: async () => {
-        $("#play").addClass("disable");
-        $("#status span").last().text(data.elements.length);
-        $("#status").addClass("show");
+        $("#play").addClass("goUnder");
         $(".question").css("opacity", 0);
-
-        $("#play svg").css("opacity", 0);
-        await timeout (200);
-        $("#play svg").remove();
-        $(".icon").load(href + "graphics/checkmark.svg");
-        $(".icon").addClass("checkmark");
+        $(".info").css("opacity", 1);
+        $(".title").css("opacity", 1);
 
         await timeout (1000);
         $(".question").hide("opacity", 0);
@@ -106,22 +78,6 @@ const view = {
         }
 
         $("#values").removeClass("offscreen");
-    },
-    flashCircle: async() => {
-        $(".circle").css("opacity", 0);
-        await timeout(300);
-        $(".circle").css("opacity", 1);
-    },
-    updateStatus: async (increment) => {
-        if (increment)
-            $("#status span").first().text(++view.correct);
-        else
-            $("#status span").first().text(--view.correct);
-    },
-    shake: async () => {
-        $(".current").addClass("shake");
-        await timeout(820);
-        $(".current").removeClass("shake");
     },
     end: async (outcomeText, kg, msqr, mj) => {
         $(".elements").addClass("closed");

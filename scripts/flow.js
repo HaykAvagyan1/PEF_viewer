@@ -24,10 +24,6 @@ const onPageLoad = async () => {
     href = href.substring(0, href.indexOf("?"));
     elements = $(".elements");
 
-    for (let i = 0; i < data.elements.length; i++) {
-        data.elements[i].enabled = false;
-    }
-
     await addWords(currentWord);
 
     $("#kg .value").text(getWord(currentWord).kg);
@@ -37,8 +33,15 @@ const onPageLoad = async () => {
     view.fitText("#values .roundRect", {x: 20, y: 0}, {fontSize: 50, marginTop: 45}, true);
 
     $(".elements").on('wheel', async function (e) { wheel(e) });
+
+    updateInfo();
+    $(".title p").text(data.title);
     
     loader.toggle();
+}
+
+const updateInfo = () => {
+    $(".info p").text(getWord(currentWord).info);
 }
 
 const wheel = (e) => {
@@ -59,6 +62,8 @@ const scrollTo = async (index, dir) => {
     $("#values  #mj     .value").text(getWord(index).mj);
 
     view.fitText("#values .roundRect", {x: 20, y: 0}, {fontSize: 50, marginTop: 45}, true);
+
+    updateInfo();
 }
 
 const addWords = async (index) => {
@@ -68,35 +73,6 @@ const addWords = async (index) => {
 const onPlay = async () => {
     await view.onPlay();
     $("#play").attr("onclick", "check()");
-}
-
-const toggleButton = async () => {
-    getWord(currentWord).enabled = !getWord(currentWord).enabled;
-    view.toggleButton(getWord(currentWord).enabled);
-
-    if (getWord(currentWord).enabled)
-        view.updateStatus(true);
-    else
-        view.updateStatus(false);
-    
-    if (view.correct == data.elements.length)
-        $("#play").removeClass("disable");
-    else
-        $("#play").addClass("disable");
-}
-
-const check = async () => {
-    view.flashCircle(); // flash play button circle
-
-    let kg = 0, msqr = 0, mj = 0;
-
-    for (let i = 0; i < data.elements.length; i++) {
-        kg   += parseFloat(data.elements[i].kg);
-        msqr += parseFloat(data.elements[i].msqr);
-        mj   += parseFloat(data.elements[i].mj);
-    }
-
-    view.end(data.outcome, kg.toFixed(2), msqr.toFixed(2), mj.toFixed(2));
 }
 
 const getWord = (newIndex) => {
