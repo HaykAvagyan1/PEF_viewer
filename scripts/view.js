@@ -33,26 +33,10 @@ const view = {
 
         if (dir < 0) {
             elements.find(".current").before(view.getBar("offscreenTop",    top.name, currentWord - 1));
-            $(".offscreenTop p").css("font-size", "+=0.01"); // Don't ask me why.
-
-            if (getWord(currentWord - 1).enabled) {
-                $(".offscreenTop p").css("font-size", getWord(currentWord - 1).fontSize);
-                $(".offscreenTop p").css("max-width", "none");
-            }
-            else {
-                view.fitText(".offscreenTop", {x: 40, y: 30});
-            }
+            view.fitText(".offscreenTop", {x: 40, y: 30});
         } else {
             elements.find(".current").after(view.getBar("offscreenBottom",  bottom.name, currentWord + 1));
-            $(".offscreenBottom p").css("font-size", "+=0.01"); // Don't ask me why.
-
-            if (getWord(currentWord + 1).enabled) {
-                $(".offscreenBottom p").css("font-size", getWord(currentWord + 1).fontSize);
-                $(".offscreenBottom p").css("max-width", "none");
-            }
-            else {
-                view.fitText(".offscreenBottom", {x: 40, y: 30});
-            }
+            view.fitText(".offscreenBottom", {x: 40, y: 30});
         }
 
         elements.find(dir < 0 ? ".offscreenTop" : ".offscreenBottom").addClass(dir < 0 ? "top" : "bottom");

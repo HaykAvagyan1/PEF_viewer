@@ -134,6 +134,7 @@ body {
     transition: 1s;
     opacity: 0;
     position: absolute;
+    overflow: auto;
 
     height: 229px;
     width: 743px;
@@ -219,45 +220,6 @@ body {
     left: 3px;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
-.outcomeOverlay, .outcome {
-    position: absolute;
-    transition: 1s;
-    left: 99px;
-    top: 225px;
-    border-radius: 19px;
-    width: 705px;
-    height: 0px;
-    overflow: hidden;
-}
-
-.card {
-    position: relative;
-    margin-top: 900px;
-    transition: 1s;
-    display: flex;
-    justify-content: center;
-
-    height: 394px;
-    width: 646px;
-    border-radius: 19px;
-    background-color: #F3F3F3;
-    box-shadow: 5px 5px 5px 0 rgba(222,222,230,0.5), -3px -3px 5px 0 #FEFEFE;
-}
-
-.seperator {
-    height: 5px;
-    width: 582px;
-    border-radius: 19px;
-    box-shadow: inset -2px -2px 5px 0 #FFFFFF, inset 2px 3px 3px 1px rgba(222,222,230,0.72);
-    position: absolute;
-    top: 217px;
-    left: 32px;
-}
-
 #outcomeText {
     height: 156px;
     width: 600px;
@@ -312,7 +274,6 @@ body {
 }
 
 .elements p {
-    /* white-space: nowrap; */
     max-width: 350px;
     text-align: center;
     z-index: 0;

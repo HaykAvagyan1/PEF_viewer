@@ -35,10 +35,6 @@
     box-shadow: 5px 5px 5px 0 rgb(222 222 230 / 50%), -3px -3px 5px 0 #fefefe !important;
 }
 
-.insetShadow .inside {
-    opacity: 1;
-}
-
 .outsideShadow .inside {
     opacity: 0;
 }
@@ -52,74 +48,6 @@
     height: 0px !important;
 }
 
-.shake {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-    transform: translate3d(0, 0, 0);
-    perspective: 1000px;
-}
-
-@keyframes shake {
-    10%, 90% {
-        transform: translate3d(-1px, 0, 0);
-    }
-
-    20%, 80% {
-        transform: translate3d(2px, 0, 0);
-    }
-
-    30%, 50%, 70% {
-        transform: translate3d(-4px, 0, 0);
-    }
-
-    40%, 60% {
-        transform: translate3d(4px, 0, 0);
-    }
-}
-
-.disable path {
-    fill: grey;
-    opacity: 0.3;
-}
-
-.disable {
-    pointer-events: none;
-    cursor: initial;
-}
-
 .goUnder {
     margin-bottom: -40px !important;
-}
-
-.showOutcome {
-    height: 451px !important;
-    top: 48px !important;
-}
-
-.showOutcome .card {
-    animation: showCard 2s ease;
-    animation-fill-mode: forwards;
-}
-
-@keyframes showCard {
-    50% {
-        margin-top: 900px;
-    }
-
-    100% {
-        margin-top: 0px;
-    }
-}
-
-.row {
-    animation: rowPopup 0.8s ease-in-out;
-}
-
-@keyframes rowPopup {
-    from {
-        top: 600px;
-    }
-
-    to {
-        top: 0px;
-    }
 }
